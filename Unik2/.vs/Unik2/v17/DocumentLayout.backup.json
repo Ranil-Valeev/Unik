@@ -1,0 +1,52 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\Git\\Unik\\Unik2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73501DE6-F712-4D84-A22A-5C10179D2A2B}|Unik2\\Unik2.csproj|c:\\users\\user\\desktop\\git\\unik\\unik2\\unik2\\pages\\teacherpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{73501DE6-F712-4D84-A22A-5C10179D2A2B}|Unik2\\Unik2.csproj|solutionrelative:unik2\\pages\\teacherpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73501DE6-F712-4D84-A22A-5C10179D2A2B}|Unik2\\Unik2.csproj|C:\\Users\\User\\Desktop\\Git\\Unik\\Unik2\\unik2\\pages\\teacherpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{73501DE6-F712-4D84-A22A-5C10179D2A2B}|Unik2\\Unik2.csproj|solutionrelative:unik2\\pages\\teacherpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TeacherPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Git\\Unik\\Unik2\\Unik2\\Pages\\TeacherPage.xaml.cs",
+              "RelativeDocumentMoniker": "Unik2\\Pages\\TeacherPage.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Git\\Unik\\Unik2\\Unik2\\Pages\\TeacherPage.xaml.cs",
+              "RelativeToolTip": "Unik2\\Pages\\TeacherPage.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T12:40:16.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TeacherPage.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Git\\Unik\\Unik2\\Unik2\\Pages\\TeacherPage.xaml",
+              "RelativeDocumentMoniker": "Unik2\\Pages\\TeacherPage.xaml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Git\\Unik\\Unik2\\Unik2\\Pages\\TeacherPage.xaml",
+              "RelativeToolTip": "Unik2\\Pages\\TeacherPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-10T12:33:50.698Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

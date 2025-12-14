@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Unik2Model" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id_category" />
+    </Key>
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="Id_category" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cicle">
+    <Key>
+      <PropertyRef Name="Id_cicle" />
+    </Key>
+    <Property Name="Cicle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Id_cicle" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Load">
+    <Key>
+      <PropertyRef Name="Id_load" />
+    </Key>
+    <Property Name="Id_predmet" Type="int" Nullable="false" />
+    <Property Name="Clocks" Type="int" Nullable="false" />
+    <Property Name="Id_teacher" Type="int" Nullable="false" />
+    <Property Name="Id_load" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Predmet">
+    <Key>
+      <PropertyRef Name="Id_predmet" />
+    </Key>
+    <Property Name="PredmetName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Id_cycle" Type="int" Nullable="false" />
+    <Property Name="Id_predmet" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_role" />
+    </Key>
+    <Property Name="RoleName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Id_role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="Id_teacher" />
+    </Key>
+    <Property Name="Fio" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Id_category" Type="int" Nullable="false" />
+    <Property Name="Street" Type="nvarchar" MaxLength="255" />
+    <Property Name="House" Type="nvarchar" MaxLength="255" />
+    <Property Name="Apartment" Type="nvarchar" MaxLength="255" />
+    <Property Name="Id_teacher" Type="int" Nullable="false" />
+    <Property Name="Id_user" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Id_role" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Load_Predmet">
+    <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Predmet">
+        <PropertyRef Name="Id_predmet" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Id_predmet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Load_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id_teacher" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Id_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Predmet_Cicle">
+    <End Role="Cicle" Type="Self.Cicle" Multiplicity="1" />
+    <End Role="Predmet" Type="Self.Predmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cicle">
+        <PropertyRef Name="Id_cicle" />
+      </Principal>
+      <Dependent Role="Predmet">
+        <PropertyRef Name="Id_cycle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id_category" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="Id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_role" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище Unik2ModelContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cicle" EntityType="Self.Cicle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Predmet" EntityType="Self.Predmet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Load_Predmet" Association="Self.FK_Load_Predmet">
+      <End Role="Predmet" EntitySet="Predmet" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Load_Teachers" Association="Self.FK_Load_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Predmet_Cicle" Association="Self.FK_Predmet_Cicle">
+      <End Role="Cicle" EntitySet="Cicle" />
+      <End Role="Predmet" EntitySet="Predmet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Category" Association="Self.FK_Teachers_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Unik2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id_category" />
+    </Key>
+    <Property Name="CategoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="Id_category" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_Category" FromRole="Category" ToRole="Teachers" />
+  </EntityType>
+  <EntityType Name="Cicle">
+    <Key>
+      <PropertyRef Name="Id_cicle" />
+    </Key>
+    <Property Name="Cicle1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Id_cicle" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Predmet" Relationship="Self.FK_Predmet_Cicle" FromRole="Cicle" ToRole="Predmet" />
+  </EntityType>
+  <EntityType Name="Load">
+    <Key>
+      <PropertyRef Name="Id_load" />
+    </Key>
+    <Property Name="Id_predmet" Type="Int32" Nullable="false" />
+    <Property Name="Clocks" Type="Int32" Nullable="false" />
+    <Property Name="Id_teacher" Type="Int32" Nullable="false" />
+    <Property Name="Id_load" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Predmet" Relationship="Self.FK_Load_Predmet" FromRole="Load" ToRole="Predmet" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Load_Teachers" FromRole="Load" ToRole="Teachers" />
+  </EntityType>
+  <EntityType Name="Predmet">
+    <Key>
+      <PropertyRef Name="Id_predmet" />
+    </Key>
+    <Property Name="PredmetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Id_cycle" Type="Int32" Nullable="false" />
+    <Property Name="Id_predmet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cicle" Relationship="Self.FK_Predmet_Cicle" FromRole="Predmet" ToRole="Cicle" />
+    <NavigationProperty Name="Load" Relationship="Self.FK_Load_Predmet" FromRole="Predmet" ToRole="Load" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_role" />
+    </Key>
+    <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="Id_teacher" />
+    </Key>
+    <Property Name="Fio" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_category" Type="Int32" Nullable="false" />
+    <Property Name="Street" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="House" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Apartment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Id_teacher" Type="Int32" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Teachers_Category" FromRole="Teachers" ToRole="Category" />
+    <NavigationProperty Name="Load" Relationship="Self.FK_Load_Teachers" FromRole="Teachers" ToRole="Load" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Teachers_Users" FromRole="Teachers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_Users" FromRole="Users" ToRole="Teachers" />
+  </EntityType>
+  <Association Name="FK_Teachers_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id_category" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="Id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Predmet_Cicle">
+    <End Role="Cicle" Type="Self.Cicle" Multiplicity="1" />
+    <End Role="Predmet" Type="Self.Predmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cicle">
+        <PropertyRef Name="Id_cicle" />
+      </Principal>
+      <Dependent Role="Predmet">
+        <PropertyRef Name="Id_cycle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Load_Predmet">
+    <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Predmet">
+        <PropertyRef Name="Id_predmet" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Id_predmet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Load_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Load" Type="Self.Load" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id_teacher" />
+      </Principal>
+      <Dependent Role="Load">
+        <PropertyRef Name="Id_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_role" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Unik2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Cicle" EntityType="Self.Cicle" />
+    <EntitySet Name="Load" EntityType="Self.Load" />
+    <EntitySet Name="Predmet" EntityType="Self.Predmet" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Teachers_Category" Association="Self.FK_Teachers_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Predmet_Cicle" Association="Self.FK_Predmet_Cicle">
+      <End Role="Cicle" EntitySet="Cicle" />
+      <End Role="Predmet" EntitySet="Predmet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Load_Predmet" Association="Self.FK_Load_Predmet">
+      <End Role="Predmet" EntitySet="Predmet" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Load_Teachers" Association="Self.FK_Load_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Load" EntitySet="Load" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Unik2Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Unik2Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
