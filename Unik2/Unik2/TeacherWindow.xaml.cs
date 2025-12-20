@@ -13,19 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Unik2.Pages;
 
-namespace Unik2.windows
+namespace Unik2
 {
     /// <summary>
-    /// Логика взаимодействия для Teachers.xaml
+    /// Логика взаимодействия для TeacherWindow.xaml
     /// </summary>
-    public partial class Teachers : Window
+    public partial class TeacherWindow : Window
     {
-        public Teachers()
+        public TeacherWindow()
         {
             InitializeComponent();
             MainFrame.Navigate(new Pages.TeacherPage());
         }
-
         private void Load_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.LoadPage());
@@ -33,10 +32,11 @@ namespace Unik2.windows
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            if(!(MainFrame.Content is TeacherPage))
+            if (!(MainFrame.Content is TeacherPage))
             {
                 MainFrame.Navigate(new Pages.TeacherPage());
-            } else
+            }
+            else
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

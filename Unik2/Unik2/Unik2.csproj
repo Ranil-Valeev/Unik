@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\AuditLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="model\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -113,14 +116,14 @@
     <Compile Include="Pages\TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeacherWindow.xaml.cs">
+      <DependentUpon>TeacherWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="windows\Teachers.xaml.cs">
-      <DependentUpon>Teachers.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -142,15 +145,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\Reg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="windows\Teachers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

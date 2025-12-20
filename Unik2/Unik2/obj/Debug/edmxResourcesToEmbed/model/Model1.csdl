@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Unik2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AuditLog">
+    <Key>
+      <PropertyRef Name="AuditLog_ID" />
+    </Key>
+    <Property Name="AuditLog_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Record_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Operation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChangedAt" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="Id_category" />
@@ -65,7 +74,7 @@
     <Property Name="Street" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="House" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Apartment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Id_teacher" Type="Int32" Nullable="false" />
+    <Property Name="Id_teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Id_user" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Teachers_Category" FromRole="Teachers" ToRole="Category" />
     <NavigationProperty Name="Load" Relationship="Self.FK_Load_Teachers" FromRole="Teachers" ToRole="Load" />
@@ -75,7 +84,7 @@
     <Key>
       <PropertyRef Name="Id_user" />
     </Key>
-    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Id_role" Type="Int32" Nullable="false" />
@@ -155,6 +164,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Unik2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AuditLog" EntityType="Self.AuditLog" />
     <EntitySet Name="Category" EntityType="Self.Category" />
     <EntitySet Name="Cicle" EntityType="Self.Cicle" />
     <EntitySet Name="Load" EntityType="Self.Load" />

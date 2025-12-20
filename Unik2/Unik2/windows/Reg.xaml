@@ -7,6 +7,45 @@
         mc:Ignorable="d"
         Title="Reg" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Label Content="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="80" Grid.Row="0" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Login:" FontSize="20"/>
+                <TextBox x:Name="RegLogin" Margin="38,5" Height="25" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Password:" FontSize="20"/>
+                <PasswordBox x:Name="RegPass" Margin="5" Height="25" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Fio:" FontSize="20"/>
+                <TextBox x:Name="RegFio" Margin="61,5" Height="25" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Category:" FontSize="20"/>
+                <ComboBox x:Name="CbCategory" DisplayMemberPath="CategoryName" Margin="5" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Street:" FontSize="20"/>
+                <TextBox x:Name="RegStreet" Margin="35,5" Height="25" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="House:" FontSize="20"/>
+                <TextBox x:Name="RegHouse" Margin="30,5" Height="25" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Apartment:" FontSize="20"/>
+                <TextBox x:Name="RegApartment" Margin="5,5" Height="25" Width="135"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="Save" Content="Ok" Width="150" Height="40" Click="Save_Click" Background="LightCoral" Margin="5" />
+            <Button x:Name="Exit" Content="back" Width="150" Height="40" Click="Exit_Click" Background="LightCoral" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -22,20 +22,22 @@ namespace Unik2.model
             : base("name=Unik2Entities")
         {
         }
+        
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
         private static Unik2Entities _context;
+        
         public static Unik2Entities GetContext()
         {
-            if(_context == null)
+            if (_context == null)
             {
                 _context = new Unik2Entities();
             }
             return _context;
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
+        public DbSet<AuditLog> AuditLog { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Cicle> Cicle { get; set; }
         public DbSet<Load> Load { get; set; }

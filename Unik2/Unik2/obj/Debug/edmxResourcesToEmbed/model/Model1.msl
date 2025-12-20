@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище Unik2ModelContainer" CdmEntityContainer="Unik2Entities">
+    <EntitySetMapping Name="AuditLog">
+      <EntityTypeMapping TypeName="Unik2Model.AuditLog">
+        <MappingFragment StoreEntitySet="AuditLog">
+          <ScalarProperty Name="AuditLog_ID" ColumnName="AuditLog_ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record_ID" />
+          <ScalarProperty Name="Operation" ColumnName="Operation" />
+          <ScalarProperty Name="ChangedAt" ColumnName="ChangedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Category">
       <EntityTypeMapping TypeName="Unik2Model.Category">
         <MappingFragment StoreEntitySet="Category">

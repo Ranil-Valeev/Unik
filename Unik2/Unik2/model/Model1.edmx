@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище Unik2Model" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditLog_ID" />
+          </Key>
+          <Property Name="AuditLog_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record_ID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ChangedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id_category" />
@@ -63,14 +72,14 @@
           <Property Name="Street" Type="nvarchar" MaxLength="255" />
           <Property Name="House" Type="nvarchar" MaxLength="255" />
           <Property Name="Apartment" Type="nvarchar" MaxLength="255" />
-          <Property Name="Id_teacher" Type="int" Nullable="false" />
+          <Property Name="Id_teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_user" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id_user" />
           </Key>
-          <Property Name="Id_user" Type="int" Nullable="false" />
+          <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Id_role" Type="int" Nullable="false" />
@@ -179,6 +188,7 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище Unik2ModelContainer">
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cicle" EntityType="Self.Cicle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
@@ -217,6 +227,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Unik2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditLog_ID" />
+          </Key>
+          <Property Name="AuditLog_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Operation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChangedAt" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id_category" />
@@ -282,7 +301,7 @@
           <Property Name="Street" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="House" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Apartment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Id_teacher" Type="Int32" Nullable="false" />
+          <Property Name="Id_teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_user" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Teachers_Category" FromRole="Teachers" ToRole="Category" />
           <NavigationProperty Name="Load" Relationship="Self.FK_Load_Teachers" FromRole="Teachers" ToRole="Load" />
@@ -292,7 +311,7 @@
           <Key>
             <PropertyRef Name="Id_user" />
           </Key>
-          <Property Name="Id_user" Type="Int32" Nullable="false" />
+          <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Id_role" Type="Int32" Nullable="false" />
@@ -372,6 +391,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Unik2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Cicle" EntityType="Self.Cicle" />
           <EntitySet Name="Load" EntityType="Self.Load" />
@@ -452,6 +472,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище Unik2ModelContainer" CdmEntityContainer="Unik2Entities">
+          <EntitySetMapping Name="AuditLog">
+            <EntityTypeMapping TypeName="Unik2Model.AuditLog">
+              <MappingFragment StoreEntitySet="AuditLog">
+                <ScalarProperty Name="AuditLog_ID" ColumnName="AuditLog_ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record_ID" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="ChangedAt" ColumnName="ChangedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="Unik2Model.Category">
               <MappingFragment StoreEntitySet="Category">

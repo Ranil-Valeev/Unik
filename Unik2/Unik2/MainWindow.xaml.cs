@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Unik2.model;
+using Unik2.windows;
 
 namespace Unik2
 {
@@ -37,12 +38,12 @@ namespace Unik2
                     return;
                 } else if (users.Id_role == 1)
                 {
-                    windows.Teachers teachers = new windows.Teachers();
+                    TeacherWindow teachers = new TeacherWindow();
                     teachers.Show();
                     this.Close();
                 } else if (users.Id_role == 2)
                 {
-                    windows.Admin admin = new windows.Admin();
+                    Admin admin = new Admin();
                     admin.Show();
                     this.Close();
                 }
