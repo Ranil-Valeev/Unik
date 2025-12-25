@@ -28,3 +28,5 @@ C:\Users\User\Desktop\Git\Unik\Unik2\Unik2\obj\Debug\Unik2.csproj.CoreCompileInp
 C:\Users\User\Desktop\Git\Unik\Unik2\Unik2\obj\Debug\Unik2.csproj.Up2Date
 C:\Users\User\Desktop\Git\Unik\Unik2\Unik2\obj\Debug\Unik2.exe
 C:\Users\User\Desktop\Git\Unik\Unik2\Unik2\obj\Debug\Unik2.pdb
+C:\Users\User\Desktop\Git\Unik\Unik2\Unik2\obj\Debug\Admin_Pages\AddTeachers.g.cs
+C:\Users\User\Desktop\Git\Unik\Unik2\Unik2\obj\Debug\Admin_Pages\AddTeachers.baml
